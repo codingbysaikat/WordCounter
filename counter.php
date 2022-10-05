@@ -35,7 +35,9 @@ function counter_postwordcount($content){
     $strriped_content = strip_tags($content);
     $count = str_word_count($strriped_content);
     $label = __('total number of wors is','counter');
-    $content.= sprintf('<h2> %s : %s </h2>', $label, $count);
+    $label = apply_filters('count_counting_title',$label);
+    $tag = apply_filters('changing_tag','h2');
+    $content.= sprintf('<%s> %s : %s </%s>',$tag, $label, $count, $tag);
     return $content;
 
 }
